@@ -1,6 +1,8 @@
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import './App.css';
 import { TextAreaa } from './sivu';
+import { ArtistList } from './artist.list';
+import { Artist } from './get.artist';
 
 function App() {
 
@@ -11,22 +13,13 @@ function App() {
   return (
     <div className="App">
       <TextAreaa clickedThis={buttonHandler} />
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TextField id="outlined-basic" label="Hae ID:llä" variant="outlined" />
+      <Button className="AppButton" variant="contained">Hae</Button>
+      <ArtistList />
+      <Artist/>
     </div>
   );
 }
 
 export default App;
+
