@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { DeleteArtist } from "./delete.artist";
+import { AddArtist } from "./add.artist";
 
 
 
@@ -7,7 +9,11 @@ export const ArtistList = () => {
 const [artistList, setArtistList] = useState([]);
 
 useEffect(() => {
-  fetch('http://localhost:3002/api' + '/getall', {
+  fetchAll()
+}, []);
+
+const fetchAll = () => {
+  fetch('http://localhost:3002/api/getall', {
     headers: {
       "Accept": "application/json",
     }
@@ -18,12 +24,16 @@ useEffect(() => {
   }).catch(() => {
     setArtistList([]);
   })
-}, []);
+}
 
-const mapArtist = () => artistList.map(x => <p>{x.name}</p>)
   
   return (<>
-  <h1>Blog Articles</h1>
-  {artistList && mapArtist()}
+  <AddArtist action={fetchAll}/>
+  {artistList && artistList.map((x, index) => 
+    <div key={x._id + index}>
+      <p >{x.name} : {x._id}</p>
+      <DeleteArtist key={x._id + index} action={fetchAll} id={x._id} />
+    </div>)
+  }
   </>);
 }

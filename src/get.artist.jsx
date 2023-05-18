@@ -3,14 +3,15 @@ import { useState } from "react";
 
 
 
-export const Artist = () => {
+export const GetArtist = () => {
 
 const [artist, setArtist] = useState(null);
 const [userinput, setUserinput] = useState(0);
 
 
 const fetchArtist = () => {
-  fetch('http://localhost:3002/api' + '/' + userinput, {
+  fetch('http://localhost:3002/api/' + userinput, {
+    method: "GET",
     headers: {
       "Accept": "application/json",
     }
@@ -18,16 +19,13 @@ const fetchArtist = () => {
     return response.json()})
   .then(data => {
     setArtist(data);
-    console.log(data)
   }).catch(() => {
     setArtist(null);
   })
 };
-
-const mapArtist = () => <p>{artist}</p>
   
   return (<>
-  <h1>Blog Articles</h1>
+  <h1>Hae artisti: </h1>
   <TextField onChange={(event) => {
     setUserinput(event.target.value);
   }} id="outlined-basic" label="Hae ID:llä" variant="outlined" /> 
