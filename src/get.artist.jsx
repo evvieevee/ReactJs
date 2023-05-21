@@ -19,6 +19,7 @@ const fetchArtist = () => {
   }).then(response => {
     return response.json()})
   .then(data => {
+
     setArtist(data.name);
     setArtistSongs(data.songs);
   }).catch(() => {
@@ -63,18 +64,21 @@ const updateArtist = () => {
   
   return (<>
   <h1>Hae artisti: </h1>
-  <TextField onChange={(event) => {
+  <div className="name-container"><TextField onChange={(event) => {
     setUserinput(event.target.value);
   }} id="outlined-basic" label="Hae ID:llä" variant="outlined" /> 
+  {artistName && <TextField className="name-field-update" id="outlined-basic" onChange={e => setArtist(e.target.value)} value={artistName} label="Artist name" variant="outlined" placeholder="artist name"/>}
+  </div>
   <Button onClick={fetchArtist} className="AppButton" variant="contained">Hae</Button>
+  
   <br />
   {artistName && 
   <>
-    <TextField id="outlined-basic" onChange={e => setArtist(e.target.value)} value={artistName} label="Artist name" variant="outlined" placeholder="artist name"/>
+    
     <ul>
       {artistSongs.map((x, index) => <TextField key={index} onChange={e => update(e.target.value, index)} value={x.name} />)}
     </ul>
-    <TextField id="outlined-basic" onChange={e => setNewSongName(e.target.value)} value={newSongName} label="Artist Song" variant="outlined" placeholder="Artist Song"/>
+    <TextField id="outlined-basic" className="text-field" onChange={e => setNewSongName(e.target.value)} value={newSongName} label="Artist Song" variant="outlined" placeholder="Artist Song"/>
     <Button onClick={addSong} className="AppButton" variant="contained">Lisää</Button>
     <Button onClick={updateArtist} className="AppButton" variant="contained">Päivitä</Button>
   </>

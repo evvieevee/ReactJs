@@ -5,3 +5,14 @@
 .AppButton {
   margin: 10px !important;
 }
+
+.text-field {
+  margin: 10px;
+}
+.name-container {
+display:inline-grid ;
+
+}
+.name-field-update {
+  margin-top: 10px !important;
+}
